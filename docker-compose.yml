@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  mars-explorer-network:
+    name: mars-explorer-network
+
+services:
+  app:
+    container_name: mars.explorer.local
+    restart: always
+    networks:
+      - mars-explorer-network
+    ports:
+      - 7000:7000
+    build: .
+    image: mars_explorer_image
+    env_file:
+      - .env
+    environment:
+      DEV_ENV: 'docker'
+      NPM_CONFIG_LOGLEVEL: 'warn'
